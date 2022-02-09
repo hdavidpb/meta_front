@@ -3,12 +3,13 @@ import { AiOutlineUser } from "react-icons/ai";
 import { MdOutlineAlternateEmail, MdOutlinePassword } from "react-icons/md";
 import { IForms, IRegisterData } from "../../interfaces";
 import { useForm } from "react-hook-form";
-
 import { errorNotify } from "../../alerts/alerts";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUSer, IUserRegister } from "../../redux/features/user/services";
 
 import * as sc from "./style";
+import { RootState } from "../../redux/store";
+import { ClipLoader } from "react-spinners";
 export const defaultValues: IRegisterData = {
   email: "",
   password: "",
@@ -18,10 +19,12 @@ export const defaultValues: IRegisterData = {
 };
 
 const Register = ({ action }: IForms) => {
+  const { loading } = useSelector((store: RootState) => store.user);
   const dispatch = useDispatch();
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: defaultValues,
@@ -38,10 +41,11 @@ const Register = ({ action }: IForms) => {
     const registerData: IUserRegister = {
       name: data.name,
       lastName: data.lastName,
-      email: data.lastName,
+      email: data.email,
       password: data.password,
     };
     dispatch(createUSer(registerData));
+    reset();
   };
 
   return (
@@ -121,7 +125,7 @@ const Register = ({ action }: IForms) => {
         )}
       </sc.FieldsContainer>
       <sc.Button type="submit" bg="gray" color="#FFFFFF">
-        Registrate
+        {loading ? <ClipLoader size={15} color="#FFFFFF" /> : "Registrate"}
       </sc.Button>
       <sc.LinkChange onClick={() => action()}>Inicia sessión</sc.LinkChange>
     </sc.FormContainer>

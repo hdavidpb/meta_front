@@ -12,8 +12,9 @@ export interface IUserRegister {
 export const createUSer = createAsyncThunk(
   "create-new-user",
   async (data: IUserRegister) => {
+
     try {
-      const res = axios.post(`${process.env.REACT_APP_API}/register`, data);
+      const res = axios.post(`${process.env.REACT_APP_META}/auth/register`, data);
       console.log((await res).data);
       successNotify("Usuario creado con exito!");
     } catch (error) {

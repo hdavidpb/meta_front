@@ -22,7 +22,7 @@ export const LoginContainer = styled.div`
 
 export const LoginBoxContainer = styled.div`
   width: 90%;
-  height: 80vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
