@@ -8,3 +8,8 @@ export interface IRegisterData {
   password: string;
   repetPassword: string;
 }
+
+export interface ILoginData {
+  email: string;
+  password: string;
+}

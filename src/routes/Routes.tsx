@@ -1,12 +1,19 @@
 import React from "react";
 import Login from "../pages/login/Login";
 import { useRoutes } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import Home from "../pages/home/Home";
 
 const Routes = () => {
   const routes = [
-    { path: "/", element: <h1>Home</h1> },
+    {
+      path: "/",
+      element: <Home />,
+    },
     { path: "login", element: <Login /> },
-    { path: "register", element: <h1>Register</h1> },
+    { path: "*", element: <h1>Not found</h1> },
   ];
   let element = useRoutes(routes);
   return element;

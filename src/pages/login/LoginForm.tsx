@@ -1,25 +1,77 @@
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdOutlinePassword } from "react-icons/md";
-import { IForms } from "../../interfaces";
+import { IForms, ILoginData } from "../../interfaces";
+import { useForm } from "react-hook-form";
+
 import * as sc from "./style";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/features/user/services";
+import { RootState } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
+import { successNotify } from "../../alerts/alerts";
+import { ClipLoader } from "react-spinners";
 const LoginForm = ({ action }: IForms) => {
+  const { isLogin, loginLoading } = useSelector(
+    (store: RootState) => store.user
+  );
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const defaultValues: ILoginData = {
+    email: "",
+    password: "",
+  };
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: defaultValues,
+  });
+
+  const onSubmit = (data: ILoginData) => {
+    console.log(data);
+
+    dispatch(login(data));
+  };
+
   return (
-    <sc.FormContainer>
+    <sc.FormContainer onSubmit={handleSubmit(onSubmit)}>
       <sc.FieldsContainer>
         <sc.IconContainer>
           <AiOutlineUser color="#5b4f7c" size={18} />
         </sc.IconContainer>
-        <input type="text" placeholder="Usuario" />
+        <input
+          type="email"
+          placeholder="Usuario"
+          {...register("email", {
+            required: { value: true, message: "Debe digitar un correo valído" },
+          })}
+        />
+        {errors.email && <sc.ErrorMsg>{errors.email.message}</sc.ErrorMsg>}
       </sc.FieldsContainer>
       <sc.FieldsContainer>
         <sc.IconContainer>
           <MdOutlinePassword color="#5b4f7c" size={18} />
         </sc.IconContainer>
-        <input type="password" placeholder="Contraseña" />
+        <input
+          type="password"
+          placeholder="Contraseña"
+          {...register("password", {
+            required: { value: true, message: "Debe digitar una contraseña" },
+          })}
+        />
+        {errors.password && (
+          <sc.ErrorMsg>{errors.password.message}</sc.ErrorMsg>
+        )}
       </sc.FieldsContainer>
-      <sc.Button bg="#5b4f7c" color="#FFFFFF">
-        Iniciar sessión
+      <sc.Button type="submit" bg="#5b4f7c" color="#FFFFFF">
+        {loginLoading ? (
+          <ClipLoader size={15} color="#FFFFFF" />
+        ) : (
+          "Iniciar sessión"
+        )}
       </sc.Button>
       <sc.LinkChange onClick={() => action()}>Registrate</sc.LinkChange>
     </sc.FormContainer>

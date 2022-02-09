@@ -5,11 +5,12 @@ import { IForms, IRegisterData } from "../../interfaces";
 import { useForm } from "react-hook-form";
 import { errorNotify } from "../../alerts/alerts";
 import { useDispatch, useSelector } from "react-redux";
-import { createUSer, IUserRegister } from "../../redux/features/user/services";
+import { createUSer } from "../../redux/features/user/services";
 
-import * as sc from "./style";
 import { RootState } from "../../redux/store";
 import { ClipLoader } from "react-spinners";
+import { IUserRegister } from "../../redux/features/user/interfaces";
+import * as sc from "./style";
 export const defaultValues: IRegisterData = {
   email: "",
   password: "",

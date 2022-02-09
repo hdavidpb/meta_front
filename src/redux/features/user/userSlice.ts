@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IInitialState } from "./interfaces";
-import { createUSer } from "./services";
+import { createUSer, login } from "./services";
 
 const initialState: IInitialState = {
   isLogin: localStorage.getItem("access")!!,
   loading: false,
+  loginLoading: false,
 };
 
 export const userSlice = createSlice({
@@ -17,6 +18,16 @@ export const userSlice = createSlice({
     });
     addCase(createUSer.fulfilled, (state, { payload }) => {
       state.loading = false;
+    });
+    addCase(login.pending, (state) => {
+      state.loginLoading = true;
+    });
+    addCase(login.fulfilled, (state, { payload }) => {
+      state.loginLoading = false;
+      state.isLogin = payload!.access_token;
+    });
+    addCase(login.rejected, (state) => {
+      state.loginLoading = false;
     });
   },
 });
