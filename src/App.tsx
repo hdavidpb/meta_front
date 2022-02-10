@@ -6,6 +6,7 @@ import { ViewContainer } from "./style";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "./components/SideBarMenu/Sidebar";
 
 const App = () => {
   const { isLogin } = useSelector((store: RootState) => store.user);
@@ -20,6 +21,7 @@ const App = () => {
 
   return (
     <ViewContainer>
+      <Sidebar />
       <Routes />
       <Toaster />
     </ViewContainer>
