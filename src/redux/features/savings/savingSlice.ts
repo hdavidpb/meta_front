@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IInitialState } from "./interface";
-import { createNewSaving, getAllYearsFromUser } from "./services";
+import { createNewSaving, deleteSaving, getAllYearsFromUser } from "./services";
 
 const initialState: IInitialState = {
   userYears: [],
@@ -26,6 +26,9 @@ export const savingSlice = createSlice({
     });
     addCase(createNewSaving.fulfilled, (state, { payload }) => {
       state.loadingCreate = false;
+    });
+    addCase(deleteSaving.fulfilled, (state, { payload }) => {
+      state.userYears.filter((saving) => saving.id !== payload!.id);
     });
   },
 });

@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { successNotify } from "../../../alerts/alerts";
 import { ICreateDataSend } from "../../../interfaces";
 import { rest } from "../../../services";
-import { ICreateSavingResponse, ISavingResponse } from "./interface";
+import { ICreateSavingResponse, ISavingResponse, IYear } from "./interface";
 
 export const getAllYearsFromUser = createAsyncThunk(
   "get-all-savings",
@@ -32,6 +32,22 @@ export const createNewSaving = createAsyncThunk(
     } catch (error) {
       console.log(error);
       return error;
+    }
+  }
+);
+
+export const deleteSaving = createAsyncThunk(
+  "delete-saving",
+  async (yearId: string) => {
+    try {
+      const res = await rest.delete<IYear>(
+        `${process.env.REACT_APP_META}/saving/delete/${yearId}`
+      );
+      console.log(res.data);
+      return res.data;
+      successNotify("Ahorro eliminado con exito!");
+    } catch (error) {
+      console.log(error);
     }
   }
 );

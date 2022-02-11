@@ -37,7 +37,7 @@ export const Title = styled.div`
     position: absolute;
     left: 6%;
     bottom: 41px;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     transform: rotate(20deg);
   }
 `;
@@ -45,7 +45,7 @@ export const Title = styled.div`
 export const YearsCardsContainer = styled.div`
   margin-top: 8rem;
   width: 100%;
-  max-height: 66vh;
+  height: 66vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -85,6 +85,28 @@ export const CardYear = styled.div`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+export const DeletBtn = styled.button`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  background: #ff00009c;
+  z-index: 50;
+  border: none;
+`;
+export const DeletContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
 `;
 
 export const FooterCard = styled.div`
