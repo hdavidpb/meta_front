@@ -45,7 +45,7 @@ export const Title = styled.div`
 export const YearsCardsContainer = styled.div`
   margin-top: 8rem;
   width: 100%;
-  max-height: 80vh;
+  max-height: 66vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -80,13 +80,28 @@ export const CardYear = styled.div`
     background-size: cover;
     backdrop-filter: blur(5px);
   }
+`;
+
+export const FooterCard = styled.div`
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 6px;
+
   & h6 {
-    font-weight: 600;
     width: 100%;
-    height: 50%;
-    font-size: 32px;
-    color: purple;
     text-align: right;
-    padding-right: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+
+  & p {
+    width: 100%;
+    text-align: right;
+    font-size: 13px;
   }
 `;

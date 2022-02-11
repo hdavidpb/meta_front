@@ -20,7 +20,10 @@ const Home = () => {
         <sc.YearsCardsContainer>
           <sc.CardYear>
             <img />
-            <h6>2021</h6>
+            <sc.FooterCard>
+              <h6>Viaje a mexico</h6>
+              <p>2021</p>
+            </sc.FooterCard>
           </sc.CardYear>
           <sc.CardYear></sc.CardYear>
           <sc.CardYear></sc.CardYear>

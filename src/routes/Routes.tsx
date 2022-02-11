@@ -5,6 +5,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Home from "../pages/home/Home";
+import CreateSaving from "../pages/createSaving/CreateSaving";
 
 const Routes = () => {
   const routes = [
@@ -13,6 +14,7 @@ const Routes = () => {
       element: <Home />,
     },
     { path: "login", element: <Login /> },
+    { path: "create-saving", element: <CreateSaving /> },
     { path: "*", element: <h1>Not found</h1> },
   ];
   let element = useRoutes(routes);

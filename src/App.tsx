@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Routes from "./routes/Routes";
 import { Toaster } from "react-hot-toast";
 
@@ -10,12 +10,11 @@ import Sidebar from "./components/SideBarMenu/Sidebar";
 
 const App = () => {
   const { isLogin } = useSelector((store: RootState) => store.user);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLogin) {
       navigate("/login");
-    } else {
-      navigate("/");
     }
   }, [isLogin]);
 
