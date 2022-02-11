@@ -1,11 +1,17 @@
 export interface IInitialState {
   userYears: IYear[];
   loadingYears: boolean;
+  loadingCreate: boolean;
 }
 
 export interface IYear {
+  description: string;
   id: string;
   year: string;
+}
+
+export interface ISavingResponse {
+  years: IYear[];
 }
 
 export interface ICreateSavingResponse {

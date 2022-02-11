@@ -3,13 +3,15 @@ import { useForm } from "react-hook-form";
 import { ICreateData, ICreateDataSend } from "../../interfaces";
 import dayjs from "dayjs";
 import { ViewContainer } from "../../style";
-import { useDispatch } from "react-redux";
-import { crerNewSaving } from "../../redux/features/savings/services";
+import { useDispatch, useSelector } from "react-redux";
+import { createNewSaving } from "../../redux/features/savings/services";
 import piggyBank from "../../assets/images/piggyBank.svg";
 import * as sc from "./styles";
 import { BsFillChatSquareTextFill } from "react-icons/bs";
 import { BsFillCalendar2DateFill } from "react-icons/bs";
 import { BsPiggyBankFill } from "react-icons/bs";
+import { RootState } from "../../redux/store";
+import { RingLoader } from "react-spinners";
 export const defaultValues: ICreateData = {
   initialMonth: "",
   finalMonth: "",
@@ -25,6 +27,7 @@ const CreateSaving = () => {
     dayjs().format("YYYY-MM-DD")
   );
   const [maxFinalDate, setMaxSecondFinalDate] = useState("");
+  const { loadingCreate } = useSelector((store: RootState) => store.saving);
   const {
     handleSubmit,
     register,
@@ -60,7 +63,7 @@ const CreateSaving = () => {
       totalSaving: +data.totalSaving,
       year: String(dayjs(data.initialMonth).get("year")),
     };
-    dispatch(crerNewSaving(dataSend));
+    dispatch(createNewSaving(dataSend));
     console.log(dataSend);
     reset();
   };
@@ -108,7 +111,13 @@ const CreateSaving = () => {
             />
           </sc.FieldsContainer>
 
-          <button type="submit">Guardar</button>
+          <button type="submit">
+            {loadingCreate ? (
+              <RingLoader color="#FFFFFF" size={20} />
+            ) : (
+              "Guardar"
+            )}
+          </button>
         </sc.FormContainer>
         <sc.SvgContainer>
           <img src={piggyBank} alt="piggy" />

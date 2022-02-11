@@ -59,7 +59,7 @@ export const CardYear = styled.div`
   position: relative;
   margin: auto;
   width: 90%;
-  height: 100px;
+  height: 138px;
   border-radius: 12px;
   background: #ffffff;
   box-shadow: 2px 2px 2px #38042e54;
@@ -67,6 +67,7 @@ export const CardYear = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.4s;
 
   & img {
     height: 50%;
@@ -79,6 +80,10 @@ export const CardYear = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     backdrop-filter: blur(5px);
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 
