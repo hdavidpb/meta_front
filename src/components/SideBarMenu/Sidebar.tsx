@@ -4,6 +4,7 @@ import { RootState } from "../../redux/store";
 import { BiExit } from "react-icons/bi";
 import { BsPiggyBankFill } from "react-icons/bs";
 import * as sc from "./styles";
+import { MdMenuOpen } from "react-icons/md";
 const Sidebar = () => {
   const { isLogin } = useSelector((store: RootState) => store.user);
   const [closeSidebar, setCloseSidebar] = useState(true);
@@ -11,8 +12,11 @@ const Sidebar = () => {
     <sc.SidebarContainer close={closeSidebar}>
       {isLogin && (
         <sc.ButtonSlideOpen
+          close={closeSidebar}
           onClick={() => setCloseSidebar(!closeSidebar)}
-        ></sc.ButtonSlideOpen>
+        >
+          <MdMenuOpen size={10} color={closeSidebar ? "#FFFFFF" : "purple"} />
+        </sc.ButtonSlideOpen>
       )}
 
       <sc.OptionContainer>

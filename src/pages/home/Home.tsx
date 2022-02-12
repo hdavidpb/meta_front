@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Sidebar from "../../components/SideBarMenu/Sidebar";
+
 import { getAllYearsFromUser } from "../../redux/features/savings/services";
 import { ViewContainer } from "../../style";
 import * as sc from "./style";

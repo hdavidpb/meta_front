@@ -6,7 +6,7 @@ interface IProps {
 
 export const SidebarContainer = styled.div`
   width: 90%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -27,7 +27,9 @@ export const ButtonSlideOpen = styled.button`
   outline: none;
   width: 30px;
   height: 30px;
-  background: red;
+  background: ${({ close }: IProps) => (close ? "purple" : "#FFFFFF")};
+  border-radius: 0 18px 18px 0;
+  transition: all 0.4s;
 `;
 
 export const OptionFooterContainer = styled.div`
