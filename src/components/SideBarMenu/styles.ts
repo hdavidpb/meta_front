@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 interface IProps {
@@ -17,9 +18,14 @@ export const SidebarContainer = styled.div`
   transform: translate(${({ close }: IProps) => (close ? "-99%" : "0")});
   opacity: ${({ close }: IProps) => (close ? "0.8" : "1")};
   z-index: 100;
+  padding-top: 2rem;
 `;
 
 export const ButtonSlideOpen = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
   position: absolute;
   top: 10px;
   right: -7%;
@@ -27,9 +33,8 @@ export const ButtonSlideOpen = styled.button`
   outline: none;
   width: 30px;
   height: 30px;
-  background: ${({ close }: IProps) => (close ? "purple" : "#FFFFFF")};
-  border-radius: 0 18px 18px 0;
-  transition: all 0.4s;
+  background: purple;
+  border-radius: 0 12px 12px 0;
 `;
 
 export const OptionFooterContainer = styled.div`

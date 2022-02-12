@@ -37,7 +37,7 @@ export const Title = styled.div`
     position: absolute;
     left: 6%;
     bottom: 41px;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     transform: rotate(20deg);
   }
 `;
@@ -45,7 +45,7 @@ export const Title = styled.div`
 export const YearsCardsContainer = styled.div`
   margin-top: 8rem;
   width: 100%;
-  max-height: 80vh;
+  height: 66vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -59,7 +59,7 @@ export const CardYear = styled.div`
   position: relative;
   margin: auto;
   width: 90%;
-  height: 100px;
+  height: 138px;
   border-radius: 12px;
   background: #ffffff;
   box-shadow: 2px 2px 2px #38042e54;
@@ -67,6 +67,7 @@ export const CardYear = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.4s;
 
   & img {
     height: 50%;
@@ -80,13 +81,54 @@ export const CardYear = styled.div`
     background-size: cover;
     backdrop-filter: blur(5px);
   }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const DeletBtn = styled.button`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  background: #ff00009c;
+  z-index: 50;
+  border: none;
+`;
+export const DeletContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
+
+export const FooterCard = styled.div`
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 6px;
+
   & h6 {
-    font-weight: 600;
     width: 100%;
-    height: 50%;
-    font-size: 32px;
-    color: purple;
     text-align: right;
-    padding-right: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+
+  & p {
+    width: 100%;
+    text-align: right;
+    font-size: 13px;
   }
 `;

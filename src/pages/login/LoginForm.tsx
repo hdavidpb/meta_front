@@ -4,13 +4,13 @@ import { MdOutlinePassword } from "react-icons/md";
 import { IForms, ILoginData } from "../../interfaces";
 import { useForm } from "react-hook-form";
 
-import * as sc from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/features/user/services";
 import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
-import { successNotify } from "../../alerts/alerts";
+
 import { ClipLoader } from "react-spinners";
+import * as sc from "./style";
 const LoginForm = ({ action }: IForms) => {
   const { isLogin, loginLoading } = useSelector(
     (store: RootState) => store.user
@@ -30,7 +30,7 @@ const LoginForm = ({ action }: IForms) => {
     defaultValues: defaultValues,
   });
 
-  const onSubmit = (data: ILoginData) => {
+  const onSubmit = async (data: ILoginData) => {
     console.log(data);
 
     dispatch(login(data));

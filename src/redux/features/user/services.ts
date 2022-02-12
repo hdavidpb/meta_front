@@ -14,8 +14,9 @@ export const createUSer = createAsyncThunk(
       );
       console.log(res.data);
       successNotify("Usuario creado con exito!");
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      errorNotify(error.response.data.message);
+
       return error;
     }
   }

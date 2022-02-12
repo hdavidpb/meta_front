@@ -5,24 +5,40 @@ import { BiExit } from "react-icons/bi";
 import { BsPiggyBankFill } from "react-icons/bs";
 import * as sc from "./styles";
 import { MdMenuOpen } from "react-icons/md";
+import { NavLink } from "react-router-dom";
+import { AiFillHome } from "react-icons/ai";
 const Sidebar = () => {
   const { isLogin } = useSelector((store: RootState) => store.user);
+
   const [closeSidebar, setCloseSidebar] = useState(true);
   return (
     <sc.SidebarContainer close={closeSidebar}>
       {isLogin && (
-        <sc.ButtonSlideOpen
-          close={closeSidebar}
-          onClick={() => setCloseSidebar(!closeSidebar)}
-        >
-          <MdMenuOpen size={10} color={closeSidebar ? "#FFFFFF" : "purple"} />
+        <sc.ButtonSlideOpen onClick={() => setCloseSidebar(!closeSidebar)}>
+          <MdMenuOpen color="#FFFFFF" />
         </sc.ButtonSlideOpen>
       )}
-
-      <sc.OptionContainer>
+      <NavLink
+        onClick={() => setCloseSidebar(true)}
+        to={"/"}
+        className={({ isActive }) =>
+          isActive ? "link_action active_link" : "link_action"
+        }
+      >
+        <AiFillHome color="#FFFFFF" size={18} />
+        <p> Home</p>
+      </NavLink>
+      <NavLink
+        onClick={() => setCloseSidebar(true)}
+        to={"/create-saving"}
+        className={({ isActive }) =>
+          isActive ? "link_action active_link" : "link_action"
+        }
+      >
         <BsPiggyBankFill color="#FFFFFF" size={18} />
-        <p>Crear ahorro</p>
-      </sc.OptionContainer>
+        <p> Crear ahorro</p>
+      </NavLink>
+
       <sc.OptionFooterContainer>
         <BiExit color="#FFFFFF" size={18} />
         <p>Salir</p>

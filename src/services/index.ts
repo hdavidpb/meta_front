@@ -1,8 +1,13 @@
 import axios from "axios";
-
+export function reloadUnauthorized(error: any) {
+  if (error.response.data.message === "Unauthorized") {
+    window.location.reload();
+    return;
+  }
+}
 const rest = axios.create();
 
-const token = localStorage.getItem("access");
+const token = localStorage.getItem("access")!!;
 
 rest.interceptors.request.use(
   (config) => {
