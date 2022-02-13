@@ -28,13 +28,7 @@ const CreateSaving = () => {
   );
   const [maxFinalDate, setMaxSecondFinalDate] = useState("");
   const { loadingCreate } = useSelector((store: RootState) => store.saving);
-  const {
-    handleSubmit,
-    register,
-    reset,
-    watch,
-    formState: { errors },
-  } = useForm({
+  const { handleSubmit, register, reset, watch } = useForm({
     defaultValues: defaultValues,
   });
   useEffect(() => {

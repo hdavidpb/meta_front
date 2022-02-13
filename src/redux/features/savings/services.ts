@@ -6,7 +6,9 @@ import {
   ICreateSavingResponse,
   ISavingQuotesByYearResponse,
   ISavingResponse,
+  IWeek,
   IYear,
+  updateQuoteData,
 } from "./interface";
 
 export const getAllYearsFromUser = createAsyncThunk(
@@ -73,6 +75,28 @@ export const getAllSavingQuotesByYear = createAsyncThunk(
         `${process.env.REACT_APP_META}/saving/quotes/${yearID}`
       );
 
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      reloadUnauthorized(error);
+      console.log(error);
+    }
+  }
+);
+
+export const updateWeekQuotes = createAsyncThunk(
+  "update-saving-week-quotes",
+  async (weeksID: updateQuoteData[]) => {
+    try {
+      const res = await rest.put<IWeek[]>(
+        `${process.env.REACT_APP_META}/saving/update-is-cancel-quotes`,
+        weeksID
+      );
+      if (res.data.length === 1) {
+        successNotify("Semana Actualiza con exito! :)");
+      } else {
+        successNotify("Semanas Actualizas con exito! :)");
+      }
       console.log(res.data);
       return res.data;
     } catch (error) {

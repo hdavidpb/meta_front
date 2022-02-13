@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { BiExit } from "react-icons/bi";
 import { BsPiggyBankFill } from "react-icons/bs";
@@ -7,10 +7,17 @@ import * as sc from "./styles";
 import { MdMenuOpen } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
+import { loggout } from "../../redux/features/user/userSlice";
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const { isLogin } = useSelector((store: RootState) => store.user);
-
   const [closeSidebar, setCloseSidebar] = useState(true);
+
+  const handleCloseSesion = () => {
+    setCloseSidebar(true);
+    dispatch(loggout());
+  };
+
   return (
     <sc.SidebarContainer close={closeSidebar}>
       {isLogin && (
@@ -39,7 +46,7 @@ const Sidebar = () => {
         <p> Crear ahorro</p>
       </NavLink>
 
-      <sc.OptionFooterContainer>
+      <sc.OptionFooterContainer onClick={handleCloseSesion}>
         <BiExit color="#FFFFFF" size={18} />
         <p>Salir</p>
       </sc.OptionFooterContainer>

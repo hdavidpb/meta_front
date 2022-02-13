@@ -11,7 +11,8 @@ export const HomeContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  /* background: url(${bgHome}); */
+  background: url("https://media.istockphoto.com/vectors/neon-light-cash-money-line-icon-banking-currency-sign-dollar-or-usd-vector-id1310171499?b=1&k=20&m=1310171499&s=170667a&w=0&h=Vx66XgdCZVRbUy9PI3HPoFmhiS2sSXxQJQPhk-aIH8c=")
+    no-repeat center center/cover;
 `;
 
 export const Title = styled.div`
@@ -44,7 +45,7 @@ export const Title = styled.div`
 
 export const YearsCardsContainer = styled.div`
   margin-top: 8rem;
-  width: 100%;
+  width: 100vw;
   height: 66vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -68,18 +69,19 @@ export const CardYear = styled.div`
   justify-content: center;
   align-items: center;
   transition: all 0.4s;
+  box-shadow: 0 0 14px 8px white;
 
   & img {
     height: 50%;
     width: 100%;
     background: white;
     border-radius: 12px 12px 0 0;
-    background: purple;
-    background: url(${bgHome});
+
+    /* background: url(${bgHome});
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); */
   }
 
   &:hover {

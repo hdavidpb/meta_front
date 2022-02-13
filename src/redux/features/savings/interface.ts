@@ -8,6 +8,7 @@ export interface IInitialState {
     allQuotes: IWeek[];
     totalSaving: number;
     totalAbonado: number;
+    updateWeeksQuotes: IWeek[];
   };
 }
 
@@ -52,5 +53,10 @@ export interface IWeek {
   id: string;
   weekName: string;
   quotePrice: number;
+  isCancel: boolean;
+}
+
+export interface updateQuoteData {
+  weekId: string;
   isCancel: boolean;
 }

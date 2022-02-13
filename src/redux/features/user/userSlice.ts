@@ -11,7 +11,12 @@ const initialState: IInitialState = {
 export const userSlice = createSlice({
   name: "userSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    loggout: (state) => {
+      state.isLogin = null;
+      localStorage.removeItem("access");
+    },
+  },
   extraReducers: ({ addCase }) => {
     addCase(createUSer.pending, (state) => {
       state.loading = true;
@@ -32,4 +37,5 @@ export const userSlice = createSlice({
   },
 });
 
+export const { loggout } = userSlice.actions;
 export default userSlice.reducer;

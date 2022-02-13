@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import Sidebar from "../../components/SideBarMenu/Sidebar";
+
+import { generateRandomRgb } from "../../assets/resurces/resources";
+import LoaderComponent from "../../components/LoaderComponent";
+
 import {
   deleteSaving,
   getAllSavingQuotesByYear,
@@ -14,8 +16,10 @@ import * as sc from "./style";
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userYears } = useSelector((store: RootState) => store.saving);
-  const { isLogin } = useSelector((store: RootState) => store.user);
+  const { userYears, loadingYears } = useSelector(
+    (store: RootState) => store.saving
+  );
+
   useEffect(() => {
     dispatch(getAllYearsFromUser());
   }, []);
@@ -38,23 +42,27 @@ const Home = () => {
         <sc.Title>
           <h6>Mis Ahorros</h6>
         </sc.Title>
-        <sc.YearsCardsContainer>
-          {userYears.map((saving) => (
-            <sc.CardYear
-              key={saving.id}
-              onClick={() => handleGetSavingQuoteDetail(saving.id)}
-            >
-              <sc.DeletBtn onClick={(e) => handleDeletSaving(e, saving.id)}>
-                x
-              </sc.DeletBtn>
-              <img />
-              <sc.FooterCard>
-                <h6>{saving.description}</h6>
-                <p>{saving.year}</p>
-              </sc.FooterCard>
-            </sc.CardYear>
-          ))}
-        </sc.YearsCardsContainer>
+        {!loadingYears ? (
+          <sc.YearsCardsContainer>
+            {userYears.map((saving) => (
+              <sc.CardYear
+                key={saving.id}
+                onClick={() => handleGetSavingQuoteDetail(saving.id)}
+              >
+                <sc.DeletBtn onClick={(e) => handleDeletSaving(e, saving.id)}>
+                  x
+                </sc.DeletBtn>
+                <img style={{ background: generateRandomRgb() }} alt="" />
+                <sc.FooterCard>
+                  <h6>{saving.description}</h6>
+                  <p>{saving.year}</p>
+                </sc.FooterCard>
+              </sc.CardYear>
+            ))}
+          </sc.YearsCardsContainer>
+        ) : (
+          <LoaderComponent />
+        )}
       </sc.HomeContainer>
     </ViewContainer>
   );

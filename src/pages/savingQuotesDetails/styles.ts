@@ -19,8 +19,8 @@ export const Description = styled.h1`
   align-items: center;
   text-align: center;
   padding: 5px;
-  color: #ffffff;
-  text-shadow: 3px 3px 3px #850ef3;
+  color: #c10dcb;
+  font-weight: bold;
 `;
 
 export const SavingQuotesContainer = styled.div`

@@ -1,9 +1,7 @@
 import React from "react";
 import Login from "../pages/login/Login";
 import { useRoutes } from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoute";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+
 import Home from "../pages/home/Home";
 import CreateSaving from "../pages/createSaving/CreateSaving";
 import SavingQuotesDetail from "../pages/savingQuotesDetails/SavingQuotesDetail";

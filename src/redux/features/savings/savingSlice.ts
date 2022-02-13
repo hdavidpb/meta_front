@@ -5,6 +5,7 @@ import {
   deleteSaving,
   getAllSavingQuotesByYear,
   getAllYearsFromUser,
+  updateWeekQuotes,
 } from "./services";
 
 const initialState: IInitialState = {
@@ -17,6 +18,7 @@ const initialState: IInitialState = {
     totalSaving: 0,
     totalAbonado: 0,
     loadingSavingQuotes: false,
+    updateWeeksQuotes: [],
   },
 };
 
@@ -72,6 +74,18 @@ export const savingSlice = createSlice({
         }
         return 0;
       });
+
+      payload!.month.forEach((mont) => {
+        mont.weeks.sort((a, b) => {
+          if (a.weekName < b.weekName) {
+            return -1;
+          }
+          if (a.weekName > b.weekName) {
+            return 1;
+          }
+          return 0;
+        });
+      });
       state.savingQuotesByYearData.savingQuotesByYear = payload!;
       const allQuotes = payload?.month.flatMap((month) => {
         return month.weeks;
@@ -90,6 +104,13 @@ export const savingSlice = createSlice({
       state.savingQuotesByYearData.totalSaving = totalSaving;
       state.savingQuotesByYearData.totalAbonado = totalAbonado;
       console.log(totalAbonado);
+    });
+    // addCase(updateWeekQuotes.pending, (state) => {
+    //   state.savingQuotesByYearData.loadingSavingQuotes = true;
+    // });
+    addCase(updateWeekQuotes.fulfilled, (state, { payload }) => {
+      state.savingQuotesByYearData.loadingSavingQuotes = false;
+      state.savingQuotesByYearData.updateWeeksQuotes = payload!;
     });
   },
 });

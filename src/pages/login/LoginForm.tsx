@@ -7,15 +7,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/features/user/services";
 import { RootState } from "../../redux/store";
-import { useNavigate } from "react-router-dom";
 
 import { ClipLoader } from "react-spinners";
 import * as sc from "./style";
 const LoginForm = ({ action }: IForms) => {
-  const { isLogin, loginLoading } = useSelector(
-    (store: RootState) => store.user
-  );
-  const navigate = useNavigate();
+  const { loginLoading } = useSelector((store: RootState) => store.user);
+
   const dispatch = useDispatch();
   const defaultValues: ILoginData = {
     email: "",
@@ -24,7 +21,7 @@ const LoginForm = ({ action }: IForms) => {
   const {
     handleSubmit,
     register,
-    reset,
+
     formState: { errors },
   } = useForm({
     defaultValues: defaultValues,
@@ -32,7 +29,6 @@ const LoginForm = ({ action }: IForms) => {
 
   const onSubmit = async (data: ILoginData) => {
     console.log(data);
-
     dispatch(login(data));
   };
 

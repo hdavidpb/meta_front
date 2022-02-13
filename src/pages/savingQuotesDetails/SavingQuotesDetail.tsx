@@ -1,29 +1,61 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { errorNotify } from "../../alerts/alerts";
 import LoaderComponent from "../../components/LoaderComponent";
+import { updateQuoteData } from "../../redux/features/savings/interface";
 import { setChangeIsCancelQuote } from "../../redux/features/savings/savingSlice";
-import { getAllSavingQuotesByYear } from "../../redux/features/savings/services";
+import {
+  getAllSavingQuotesByYear,
+  updateWeekQuotes,
+} from "../../redux/features/savings/services";
 import { RootState } from "../../redux/store";
 import { ViewContainer } from "../../style";
 import * as sc from "./styles";
+
 const SavingQuotesDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams<"id">();
-  const { loadingSavingQuotes, savingQuotesByYear, totalAbonado, totalSaving } =
-    useSelector((store: RootState) => store.saving.savingQuotesByYearData);
-  const [weeksIds, setWeeksIds] = useState<string[]>([]);
+  const {
+    loadingSavingQuotes,
+    savingQuotesByYear,
+    totalAbonado,
+    totalSaving,
+    updateWeeksQuotes,
+  } = useSelector((store: RootState) => store.saving.savingQuotesByYearData);
+  const [weeksIds, setWeeksIds] = useState<updateQuoteData[]>([]);
 
   useEffect(() => {
     dispatch(getAllSavingQuotesByYear(id!));
   }, [id]);
 
-  const handleChangeUpdateQuotes = (weekId: string) => {
+  useEffect(() => {
+    if (updateWeeksQuotes.length !== 0) {
+      dispatch(getAllSavingQuotesByYear(id!));
+    }
+  }, [updateWeeksQuotes]);
+
+  const handleChangeUpdateQuotes = (weekId: string, isCancel: boolean) => {
     dispatch(setChangeIsCancelQuote(weekId));
-    setWeeksIds([...weeksIds, weekId]);
+
+    if (weeksIds.length === 0) {
+      setWeeksIds([{ weekId: weekId, isCancel: !isCancel }]);
+    } else if (weeksIds.some((week) => week.weekId === weekId)) {
+      weeksIds.forEach((week) => {
+        if (week.weekId === weekId) {
+          week.isCancel = !isCancel;
+        }
+      });
+    } else {
+      setWeeksIds([...weeksIds, { weekId: weekId, isCancel: !isCancel }]);
+    }
   };
   const handleSaveChanges = () => {
-    console.log(weeksIds);
+    if (weeksIds.length === 0) {
+      errorNotify("No ha seleccionado ningún item! :'(");
+      return;
+    }
+    dispatch(updateWeekQuotes(weeksIds));
   };
 
   return (
@@ -32,14 +64,19 @@ const SavingQuotesDetail = () => {
         <LoaderComponent />
       ) : (
         <>
-          <sc.Description>{`${savingQuotesByYear?.description} ${savingQuotesByYear?.year}`}</sc.Description>
+          <sc.Description>{`${savingQuotesByYear?.description} - ${savingQuotesByYear?.year}`}</sc.Description>
           <sc.SavingQuotesContainer>
             {savingQuotesByYear?.month.map((month) => (
               <sc.CardQuoteContainer key={month.id}>
                 <sc.CardQuotetitle>{month.monthName}</sc.CardQuotetitle>
                 <sc.ListQuotesContainer>
                   {month.weeks.map((week) => (
-                    <sc.GridQuoteContainer key={week.id}>
+                    <sc.GridQuoteContainer
+                      key={week.id}
+                      style={{
+                        background: week.isCancel ? "#DCFFF2" : "#FFFFFF",
+                      }}
+                    >
                       <p>{week.weekName}</p>
                       <p>{`$ ${new Intl.NumberFormat("CO-co").format(
                         week.quotePrice
@@ -50,7 +87,9 @@ const SavingQuotesDetail = () => {
                           checked={week.isCancel}
                           type="checkbox"
                           id="check"
-                          onChange={() => handleChangeUpdateQuotes(week.id)}
+                          onChange={() =>
+                            handleChangeUpdateQuotes(week.id, week.isCancel)
+                          }
                         />
                       </sc.CheckContainer>
                     </sc.GridQuoteContainer>

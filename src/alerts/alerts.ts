@@ -10,6 +10,6 @@ export const successNotify = (msg: string) => {
 export const errorNotify = (msg: string) => {
   toast.error(msg, {
     duration: 1500,
-    position: "bottom-center",
+    position: "top-center",
   });
 };
