@@ -22,7 +22,8 @@ export const defaultValues: ICreateData = {
 
 const CreateSaving = () => {
   const dispatch = useDispatch();
-  const [actualDate, setActualDate] = useState(dayjs().format("YYYY-MM-DD"));
+
+  const actualDate = dayjs().format("YYYY-MM-DD");
   const [minFinalDate, setMinSecondFinalDate] = useState(
     dayjs().format("YYYY-MM-DD")
   );
@@ -45,6 +46,7 @@ const CreateSaving = () => {
       }
     });
     return () => subscription.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch]);
 
   const onSubmit = (data: ICreateData) => {

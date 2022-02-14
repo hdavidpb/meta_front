@@ -22,6 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllYearsFromUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDeletSaving = (

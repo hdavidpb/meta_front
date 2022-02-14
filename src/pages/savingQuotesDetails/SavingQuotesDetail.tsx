@@ -27,12 +27,14 @@ const SavingQuotesDetail = () => {
 
   useEffect(() => {
     dispatch(getAllSavingQuotesByYear(id!));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
     if (updateWeeksQuotes.length !== 0) {
       dispatch(getAllSavingQuotesByYear(id!));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateWeeksQuotes]);
 
   const handleChangeUpdateQuotes = (weekId: string, isCancel: boolean) => {
