@@ -27,7 +27,7 @@ export const Title = styled.div`
   padding: 10px;
   color: black;
   font-weight: 600;
-  top: -12%;
+  top: -9%;
   left: -7%;
   border-radius: 15px;
   transform: rotate(23deg);
