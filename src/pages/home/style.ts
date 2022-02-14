@@ -28,18 +28,18 @@ export const Title = styled.div`
   color: black;
   font-weight: 600;
   top: -12%;
-  right: -7%;
+  left: -7%;
   border-radius: 15px;
-  transform: rotate(-21deg);
+  transform: rotate(23deg);
   background: purple;
   color: #ffffff;
-  box-shadow: 0 0 2px 2px #00000047;
+  box-shadow: 0 0 11px 10px #ede1e166;
   & h6 {
     position: absolute;
-    left: 6%;
+    left: 36%;
     bottom: 41px;
     font-size: 1.2rem;
-    transform: rotate(20deg);
+    transform: rotate(-24deg);
   }
 `;
 
@@ -69,7 +69,7 @@ export const CardYear = styled.div`
   justify-content: center;
   align-items: center;
   transition: all 0.4s;
-  box-shadow: 0 0 14px 8px white;
+  box-shadow: 0 0 8px 3px #ffffff;
 
   & img {
     height: 50%;

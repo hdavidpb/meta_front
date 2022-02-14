@@ -21,7 +21,10 @@ const Sidebar = () => {
   return (
     <sc.SidebarContainer close={closeSidebar}>
       {isLogin && (
-        <sc.ButtonSlideOpen onClick={() => setCloseSidebar(!closeSidebar)}>
+        <sc.ButtonSlideOpen
+          style={{ boxShadow: closeSidebar ? "2px 2px 2px #00000091" : "none" }}
+          onClick={() => setCloseSidebar(!closeSidebar)}
+        >
           <MdMenuOpen color="#FFFFFF" />
         </sc.ButtonSlideOpen>
       )}

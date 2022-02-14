@@ -30,8 +30,8 @@ export const ButtonSlideOpen = styled.button`
   right: -7%;
   border: none;
   outline: none;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background: purple;
   border-radius: 0 12px 12px 0;
 `;
