@@ -26,7 +26,9 @@ const Login = () => {
   return (
     <sc.LoginContainer>
       <sc.LoginBoxContainer>
-        <sc.BackgroundHeader src={bg}></sc.BackgroundHeader>
+        <sc.BackgroundHeader>
+          <img src={bg} alt="assa" />
+        </sc.BackgroundHeader>
         {isLoginForm ? (
           <LoginForm action={handleChangeForm} />
         ) : (

@@ -27,11 +27,11 @@ export const ButtonSlideOpen = styled.button`
   font-size: 16px;
   position: absolute;
   top: 10px;
-  right: -7%;
+  right: -44px;
   border: none;
   outline: none;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background: purple;
   border-radius: 0 12px 12px 0;
 `;

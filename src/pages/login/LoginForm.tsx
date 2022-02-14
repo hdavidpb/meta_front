@@ -66,7 +66,7 @@ const LoginForm = ({ action }: IForms) => {
         {loginLoading ? (
           <ClipLoader size={15} color="#FFFFFF" />
         ) : (
-          "Iniciar sessión"
+          "Iniciar sesión"
         )}
       </sc.Button>
       <sc.LinkChange onClick={() => action()}>Registrate</sc.LinkChange>

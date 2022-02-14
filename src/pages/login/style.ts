@@ -22,7 +22,7 @@ export const LoginContainer = styled.div`
 
 export const LoginBoxContainer = styled.div`
   width: 90%;
-  height: 95vh;
+  /* height: 64vh; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -32,9 +32,17 @@ export const LoginBoxContainer = styled.div`
   box-shadow: 3px 2px 18px #fbf6f6;
 `;
 
-export const BackgroundHeader = styled.img`
+export const BackgroundHeader = styled.div`
   width: 100%;
   height: 35%;
+  padding: 10px;
+  background: #ffffff;
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px #00000085;
+  }
 `;
 export const FormContainer = styled.form({
   position: "relative",
@@ -46,6 +54,7 @@ export const FormContainer = styled.form({
   flexDirection: "column",
   gap: "1.5rem",
   background: "#FFFFFF",
+  padding: "18px",
 });
 
 export const FieldsContainer = styled.div`
