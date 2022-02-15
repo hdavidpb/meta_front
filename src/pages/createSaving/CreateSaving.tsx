@@ -70,41 +70,48 @@ const CreateSaving = () => {
         <sc.FormContainer onSubmit={handleSubmit(onSubmit)}>
           <sc.FieldsContainer>
             <BsFillChatSquareTextFill />
-
-            <input
-              type="text"
-              placeholder="Descripción"
-              maxLength={20}
-              {...register("description", { required: true })}
-            />
+            <sc.InputContainer>
+              <input
+                type="text"
+                placeholder="Descripción"
+                maxLength={20}
+                {...register("description", { required: true })}
+              />
+            </sc.InputContainer>
           </sc.FieldsContainer>
           <sc.FieldsContainer>
             <BsFillCalendar2DateFill />
-            <input
-              type="date"
-              placeholder="Fecha inicial"
-              {...register("initialMonth", { required: true })}
-              min={actualDate}
-            />
+            <sc.InputContainer>
+              <input
+                type="date"
+                placeholder="Fecha inicial"
+                {...register("initialMonth", { required: true })}
+                min={actualDate}
+              />
+            </sc.InputContainer>
           </sc.FieldsContainer>
           <sc.FieldsContainer>
             <BsFillCalendar2DateFill />
-            <input
-              disabled={!maxFinalDate}
-              type="date"
-              placeholder="Fecha final"
-              {...register("finalMonth", { required: true })}
-              min={minFinalDate}
-              max={maxFinalDate}
-            />
+            <sc.InputContainer>
+              <input
+                disabled={!maxFinalDate}
+                type="date"
+                placeholder="Fecha final"
+                {...register("finalMonth", { required: true })}
+                min={minFinalDate}
+                max={maxFinalDate}
+              />
+            </sc.InputContainer>
           </sc.FieldsContainer>
           <sc.FieldsContainer>
             <BsPiggyBankFill />
-            <input
-              type="number"
-              placeholder="Ahorro programado"
-              {...register("totalSaving", { required: true })}
-            />
+            <sc.InputContainer>
+              <input
+                type="number"
+                placeholder="Ahorro programado"
+                {...register("totalSaving", { required: true })}
+              />
+            </sc.InputContainer>
           </sc.FieldsContainer>
 
           <button type="submit">

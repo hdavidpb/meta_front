@@ -103,7 +103,7 @@ export const FieldsContainer = styled.div`
   font-size: 16px;
 
   & input {
-    width: 80%;
+    width: 1000%;
     padding: 6px;
     border: none;
     outline: none;
@@ -112,4 +112,11 @@ export const FieldsContainer = styled.div`
     color: purple;
     font-size: 13px;
   }
+`;
+
+export const InputContainer = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
